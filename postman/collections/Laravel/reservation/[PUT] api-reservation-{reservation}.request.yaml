@@ -1,0 +1,12 @@
+$kind: http-request
+name: "[PUT] api/reservation/{reservation}"
+url: "{{base_url}}/api/reservation/:reservation"
+method: PATCH
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  - key: reservation
+    value: ""
+    description: ""
+order: 4000

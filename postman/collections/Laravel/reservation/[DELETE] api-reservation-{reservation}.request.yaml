@@ -1,0 +1,10 @@
+$kind: http-request
+name: "[DELETE] api/reservation/{reservation}"
+url: "{{base_url}}/api/reservation/:reservation"
+method: DELETE
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  reservation: ""
+order: 5000

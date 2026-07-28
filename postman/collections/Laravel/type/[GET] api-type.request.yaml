@@ -1,0 +1,8 @@
+$kind: http-request
+name: "[GET] api/type"
+url: "{{base_url}}/api/type"
+method: GET
+headers:
+  Accept: application/json
+  Content-Type: application/json
+order: 1000

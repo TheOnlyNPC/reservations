@@ -1,0 +1,10 @@
+$kind: http-request
+name: "[DELETE] api/aircraft/{aircraft}"
+url: "{{base_url}}/api/aircraft/:aircraft"
+method: DELETE
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  aircraft: ""
+order: 5000

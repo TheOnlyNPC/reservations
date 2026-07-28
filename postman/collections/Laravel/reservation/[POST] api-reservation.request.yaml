@@ -1,0 +1,8 @@
+$kind: http-request
+name: "[POST] api/reservation"
+url: "{{base_url}}/api/reservation"
+method: POST
+headers:
+  Accept: application/json
+  Content-Type: application/json
+order: 2000

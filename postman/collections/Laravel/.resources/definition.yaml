@@ -1,0 +1,5 @@
+$kind: collection
+name: Laravel
+description: API Documentation
+variables:
+  base_url: http://localhost

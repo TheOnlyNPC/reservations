@@ -1,0 +1,8 @@
+$kind: http-request
+name: "[GET] api/reservation"
+url: "{{base_url}}/api/reservation"
+method: GET
+headers:
+  Accept: application/json
+  Content-Type: application/json
+order: 1000

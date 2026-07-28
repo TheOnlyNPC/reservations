@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('aircrafts', function (Blueprint $table) {
+        Schema::create('types', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-
-            $table->foreignId('type_id')
-                ->onDelete('cascade');
+            $table->string("name");
+            $table->unsignedInteger('seats');
+            $table->unsignedInteger('fuel_capacity')->nullable();
         });
     }
 
@@ -25,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('aircrafts');
+        Schema::dropIfExists('types');
     }
 };

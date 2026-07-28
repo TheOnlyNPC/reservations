@@ -1,0 +1,10 @@
+$kind: http-request
+name: "[PUT] api/type/{type}"
+url: "{{base_url}}/api/type/:type"
+method: PATCH
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  type: ""
+order: 4000

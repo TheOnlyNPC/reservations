@@ -1,0 +1,8 @@
+$kind: http-request
+name: "[POST] api/aircraft"
+url: "{{base_url}}/api/aircraft"
+method: POST
+headers:
+  Accept: application/json
+  Content-Type: application/json
+order: 2000

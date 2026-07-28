@@ -1,0 +1,10 @@
+$kind: http-request
+name: "[DELETE] api/type/{type}"
+url: "{{base_url}}/api/type/:type"
+method: DELETE
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  type: ""
+order: 5000

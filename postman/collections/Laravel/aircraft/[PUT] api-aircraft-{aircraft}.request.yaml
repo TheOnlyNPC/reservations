@@ -1,0 +1,10 @@
+$kind: http-request
+name: "[PUT] api/aircraft/{aircraft}"
+url: "{{base_url}}/api/aircraft/:aircraft"
+method: PATCH
+headers:
+  Accept: application/json
+  Content-Type: application/json
+pathVariables:
+  aircraft: ""
+order: 4000
