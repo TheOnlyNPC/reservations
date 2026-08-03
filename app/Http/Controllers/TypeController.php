@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTypeRequest;
+use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Resources\TypeResource;
 use App\Models\Types;
-use Illuminate\Http\Request;
 
 class TypeController
 {
@@ -29,13 +30,9 @@ class TypeController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTypeRequest $request)
     {
-        $validated = $request->validate([
-            'name' => ['required', 'max:255'],
-            'seats' => ['required', 'integer'],
-            'fuel_capacity' => ['integer'],
-        ]);
+        $validated = $request->validated();
 
         Types::create($validated);
     }
@@ -59,15 +56,11 @@ class TypeController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateTypeRequest $request, string $id)
     {
         $type = Types::findOrFail($id);
 
-        $validated = $request->validate([
-            'name' => ['max:255'],
-            'seats' => ['integer'],
-            'fuel_capacity' => ['integer'],
-        ]);
+        $validated = $request->validated();
         
         $type->update($validated);
     }

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAircraftRequest;
+use App\Http\Requests\UpdateAircraftRequest;
 use App\Http\Resources\AircraftResource;
 use App\Models\Aircrafts;
 use Illuminate\Http\Request;
@@ -28,13 +30,11 @@ class AircraftController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreAircraftRequest $request)
     {
-        $validated = $request->validate([
-            'type_id' => ['required', 'exists:types,id'],
-        ]);
+        $validated = $request->validated();
 
-        Aircrafts::create(['type_id' => $validated['type_id']]);
+        Aircrafts::create($validated);
     }
 
     /**
@@ -56,13 +56,12 @@ class AircraftController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateAircraftRequest $request, string $id)
     {
+        //TODO: Update Methode
         $aircraft = Aircrafts::findOrFail($id);
 
-        $validated = $request->validate([
-            'type_id' => ['integer'],
-        ]);
+        $validated = $request->validated();
         
         $aircraft->update($validated);
     }

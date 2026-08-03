@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreReservationRequest;
+use App\Http\Requests\UpdateReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservations;
 use Carbon\Carbon;
@@ -29,14 +31,9 @@ class ReservationController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreReservationRequest $request)
     {   
-        $validated = $request->validate([
-            'user_id' => ['required', 'exists:users,id'],
-            'aircraft_id' => ['required', 'exists:aircrafts,id'],
-            'starts_at' => ['required', 'date'],
-            'ends_at' => ['required', 'date'],
-        ]);
+        $validated = $request->validated();
 
         $start = Carbon::parse($validated['starts_at']);
         $end = Carbon::parse($validated['ends_at']);
@@ -75,17 +72,11 @@ class ReservationController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateReservationRequest $request, string $id)
     {
-        //TODO: FIX
         $res = Reservations::findOrFail($id);
 
-        $validated = $request->validate([
-            'user_id' => ['exists:users,id'],
-            'aircraft_id' => ['exists:aircrafts,id'],
-            'starts_at' => ['date'],
-            'ends_at' => ['date'],
-        ]);
+        $validated = $request->validated();
 
         $start = Carbon::parse(!array_key_exists('starts_at', $validated) ? $res['starts_at'] : $validated['starts_at']);
         $end = Carbon::parse(!array_key_exists('ends_at', $validated) ? $res['ends_at'] : $validated['ends_at']);
@@ -94,6 +85,7 @@ class ReservationController
             ->where('aircraft_id', !array_key_exists('aircraft_id', $validated) ? $res['aircraft_id'] : $validated['aircraft_id'])
             ->where('starts_at', '<', $end)
             ->where('ends_at', '>', $start)
+            ->except($res)
             ->exists();
 
         if ($isOverlapping) {
