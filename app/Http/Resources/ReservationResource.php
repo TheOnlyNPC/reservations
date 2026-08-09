@@ -14,6 +14,24 @@ class ReservationResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
-    }
+        return [
+            'id' => $this->id,
+            'startsAt' => $this->starts_at, 
+            'endsAt' => $this->ends_at, 
+            'aircraft' => [
+                'id' => $this->aircraft_id,
+                'registration' => $this->aircraft?->registration,
+                'type' => [
+                    'id' => $this->aircraft?->type?->id,
+                    'name' => $this->aircraft?->type?->name,
+                    'seats' => $this->aircraft?->type?->seats,
+                    'fuelCapacity' => $this->aircraft?->type?->fuel_capacity,
+                ]
+            ],
+            'user' => [
+                'id' => $this->user_id,
+                'name' => $this->user?->name,
+            ] 
+        ];
+    }    
 }

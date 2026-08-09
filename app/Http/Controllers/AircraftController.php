@@ -34,7 +34,9 @@ class AircraftController
     {
         $validated = $request->validated();
 
-        Aircrafts::create($validated);
+        $aircraft = Aircrafts::create($validated);
+
+        return response()->json(new AircraftResource($aircraft));
     }
 
     /**
@@ -42,7 +44,8 @@ class AircraftController
      */
     public function show(string $id)
     {
-        //
+        $aircraft = Aircrafts::findOrFail($id);
+        return $aircraft;
     }
 
     /**

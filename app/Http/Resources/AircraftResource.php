@@ -14,6 +14,16 @@ class AircraftResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id' => $this->id,
+            'registration' => $this->registration, 
+            'status' => $this->status, 
+            'type' => [
+                'id' => $this->type_id,
+                'name' => $this->type?->name,
+                'seats' => $this->type?->seats,
+                'fuelCapacity' => $this->type?->fuel_capacity,
+            ] 
+        ];
     }
 }

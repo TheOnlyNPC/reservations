@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateReservationRequest;
 use App\Http\Resources\ReservationResource;
 use App\Models\Reservations;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
 
 class ReservationController
 {
@@ -50,7 +49,7 @@ class ReservationController
             ], 422);
         }
 
-        Reservations::create($validated);
+        return response()->json(new ReservationResource(Reservations::create($validated)));
     }
 
     /**

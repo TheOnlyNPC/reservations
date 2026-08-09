@@ -8,10 +8,11 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Aircrafts extends Model
 {
-    protected $fillable = ['type_id'];
+    protected $fillable = ['type_id', 'status', 'registration'];
 
-    function type(): BelongsTo {
-        return $this->belongsTo(Types::class);
+    public function type(): BelongsTo
+    {
+        return $this->belongsTo(Types::class, 'type_id');
     }
 
     function reservations(): HasMany {

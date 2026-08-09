@@ -15,10 +15,12 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->foreignId('user_id')
-                ->onDelete('cascade');
+                ->constrained('users')
+                ->cascadeOnDelete(); 
 
             $table->foreignId('aircraft_id')
-                ->onDelete('cascade');
+                ->constrained('aircrafts')
+                ->cascadeOnDelete(); 
 
             $table->dateTime('starts_at');
             $table->dateTime('ends_at');
