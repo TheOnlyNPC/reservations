@@ -15,6 +15,14 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        DB::table('users')->insert([
+                'name' => 'admin',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'email' => 'admin@cfm.de',
+                'password' => Hash::make('admin')
+            ]);
+
         foreach(range(1,10) as $index) {
             DB::table('users')->insert([
                 'name' => $faker->firstName,

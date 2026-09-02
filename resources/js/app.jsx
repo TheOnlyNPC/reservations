@@ -1,16 +1,25 @@
-import "../css/app.css"; // Make sure to import your CSS!
-import React, { useState } from "react";
+import "../css/app.css";
+import React, { useEffect, useState } from "react";
 import { createRoot } from "react-dom/client";
 import Header from "./components/Header";
 import AircraftCard from "./components/AircraftCard";
 import useAircrafts from "./hooks/useAircrafts";
 import AircraftContainer from "./components/AircraftContainer";
 import useReservations from "./hooks/useReservations";
+import Reservations from "./components/Reservations";
 
 function App() {
     const [aircrafts, addAircraft] = useAircrafts([]);
-    const [reservations, addReservation] = useReservations([]);
-    const [visible, setVisible] = useState(false);
+    const [reservations, addReservation, updateReservation] = useReservations(
+        [],
+    );
+    const [createAircraft, setCreateAircraft] = useState(false);
+    const [updateResVis, setUpdateResVis] = useState(false);
+    const [addResVis, setAddResVis] = useState(false);
+
+    useEffect(() => {
+        console.log(updateResVis);
+    }, [updateResVis]);
 
     return (
         <>
@@ -18,8 +27,18 @@ function App() {
             <AircraftContainer
                 aircrafts={aircrafts}
                 addAircraft={addAircraft}
-                visible={visible}
-                setVisible={setVisible}
+                visible={createAircraft}
+                setVisible={setCreateAircraft}
+            />
+            <Reservations
+                reservations={reservations}
+                aircrafts={aircrafts}
+                updateReservation={updateReservation}
+                addReservation={addReservation}
+                updateResVis={updateResVis}
+                setUpdateResVis={setUpdateResVis}
+                addResVis={addResVis}
+                setAddResVis={setAddResVis}
             />
         </>
     );

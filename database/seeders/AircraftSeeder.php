@@ -3,8 +3,7 @@
 namespace Database\Seeders;
 
 use App\AircraftStatus;
-use App\Models\Aircrafts;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Aircraft;
 use Illuminate\Database\Seeder;
 
 class AircraftSeeder extends Seeder
@@ -13,26 +12,26 @@ class AircraftSeeder extends Seeder
 
     public function run(): void
     {
-        Aircrafts::updateOrCreate(
-        ['id' => 1,]
-        ,[
-            'type_id' => '2',
+        Aircraft::updateOrCreate(
+        ['registration' => 'D-MHZB'],
+        [
+            'type_id' => 2,
             'status' => AircraftStatus::GROUNDED,
             'registration' => 'D-MHZB'
         ]);
 
-        Aircrafts::updateOrCreate(        
-        ['id' => 2],
+        Aircraft::updateOrCreate(        
+        ['registration' => 'D-KASE'],
         [
-            'type_id' => '1',
+            'type_id' => 1,
             'status' => AircraftStatus::AVAILABLE,
             'registration' => 'D-KASE'
         ]);
 
-        Aircrafts::updateOrCreate(        
-        ['id' => 3],
+        Aircraft::updateOrCreate(        
+        ['registration' => 'D-EAGZ'],
         [
-            'type_id' => '1',
+            'type_id' => 1,
             'status' => AircraftStatus::MAINTENANCE,
             'registration' => 'D-EAGZ'
         ]);

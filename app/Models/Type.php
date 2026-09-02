@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Types extends Model
+class Type extends Model
 {
     protected $fillable = ['name', 'seats', 'fuel_capacity'];
 
     function aircrafts(): HasMany {
-        return $this->hasMany(Aircrafts::class);
+        return $this->hasMany(Aircraft::class);
     }
 }

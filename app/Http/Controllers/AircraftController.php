@@ -5,8 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAircraftRequest;
 use App\Http\Requests\UpdateAircraftRequest;
 use App\Http\Resources\AircraftResource;
-use App\Models\Aircrafts;
-use Illuminate\Http\Request;
+use App\Models\Aircraft;
 
 class AircraftController
 {
@@ -15,7 +14,7 @@ class AircraftController
      */
     public function index()
     {
-        $aircrafts = Aircrafts::all();
+        $aircrafts = Aircraft::all();
         return AircraftResource::collection($aircrafts);
     }
 
@@ -34,7 +33,7 @@ class AircraftController
     {
         $validated = $request->validated();
 
-        $aircraft = Aircrafts::create($validated);
+        $aircraft = Aircraft::create($validated);
 
         return response()->json(new AircraftResource($aircraft));
     }
@@ -44,7 +43,7 @@ class AircraftController
      */
     public function show(string $id)
     {
-        $aircraft = Aircrafts::findOrFail($id);
+        $aircraft = Aircraft::findOrFail($id);
         return $aircraft;
     }
 
@@ -62,7 +61,7 @@ class AircraftController
     public function update(UpdateAircraftRequest $request, string $id)
     {
         //TODO: Update Methode
-        $aircraft = Aircrafts::findOrFail($id);
+        $aircraft = Aircraft::findOrFail($id);
 
         $validated = $request->validated();
         

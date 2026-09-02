@@ -28,7 +28,7 @@ export default function AircraftContainer({
                     Aircrafts
                 </h2>
             </div>
-            <div className="flex flex-wrap justify-center gap-4 max-w-6xl w-full mx-auto">
+            <div className="flex flex-wrap justify-center gap-4 max-w-5xl w-full mx-auto">
                 {aircrafts.map((aircraft) => (
                     <AircraftCard key={aircraft.id} aircraft={aircraft} />
                 ))}

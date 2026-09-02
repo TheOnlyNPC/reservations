@@ -25,7 +25,6 @@ class StoreAircraftRequest extends FormRequest
         return [
             'type_id' => ['required', 'exists:types,id'],
             'registration' => ['required'],
-            'status' => ['required'],
         ];
     }
 }

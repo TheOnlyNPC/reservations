@@ -9,7 +9,10 @@
         @viteReactRefresh @vite(['resources/css/app.css',
         'resources/js/app.jsx'])
     </head>
-    <body class="bg-zinc-950">
-        <div id="app" class="bg-zinc-950 min-h-screen font-sans w-full"></div>
+    <body class="bg-zinc-950 dark">
+        <div
+            id="app"
+            class="bg-zinc-950 min-h-screen font-sans w-full dark"
+        ></div>
     </body>
 </html>

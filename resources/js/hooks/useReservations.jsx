@@ -24,6 +24,7 @@ export default function useReservations() {
     }, [reservations]);
 
     const addReservation = (newReservation) => {
+        newReservation["user_id"] = 1;
         axios
             .post("http://reservations.test/api/reservation", newReservation, {
                 headers: { "Content-Type": "application/json" },
@@ -34,5 +35,27 @@ export default function useReservations() {
             .catch((err) => console.error("POST error:", err));
     };
 
-    return [reservations, addReservation];
+    const updateReservation = (id, changes) => {
+        axios
+            .patch(`http://reservations.test/api/reservation/${id}`, changes, {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+                console.log(response.data);
+
+                setReservations((prev) =>
+                    prev.map((res) => {
+                        if (res.id == id) {
+                            return response.data;
+                        } else {
+                            return res;
+                        }
+                    }),
+                );
+                console.log(reservations);
+            })
+            .catch((err) => console.error("PATCH error:", err));
+    };
+
+    return [reservations, addReservation, updateReservation];
 }

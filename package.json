@@ -15,8 +15,10 @@
         "vite": "^8.0.0"
     },
     "dependencies": {
+        "@daypilot/daypilot-lite-react": "^5.10.0",
         "@headlessui/react": "^2.2.10",
         "@heroicons/react": "^2.2.0",
+        "@ilamy/calendar": "^2.0.3",
         "axios": "^1.19.0",
         "clsx": "^2.1.1",
         "dayjs": "^1.11.21",

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreReservationRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Http\Resources\ReservationResource;
-use App\Models\Reservations;
+use App\Models\Aircraft;
+use App\Models\Reservation;
 use Carbon\Carbon;
 
 class ReservationController
@@ -15,7 +16,7 @@ class ReservationController
      */
     public function index()
     {
-        $reservations = Reservations::all();
+        $reservations = Reservation::all();
         return ReservationResource::collection($reservations);
     }
 
@@ -34,11 +35,15 @@ class ReservationController
     {   
         $validated = $request->validated();
 
+        $aircraft = isset($validated['aircraft_id'])
+            ? Aircraft::findOrFail($validated['aircraft_id'])
+            : Aircraft::where('registration', $validated['registration'])->firstOrFail();
+
         $start = Carbon::parse($validated['starts_at']);
         $end = Carbon::parse($validated['ends_at']);
 
-        $isOverlapping = Reservations::query()
-            ->where('aircraft_id', $validated['aircraft_id'])
+        $isOverlapping = Reservation::query()
+            ->where('aircraft_id', $aircraft->id)
             ->where('starts_at', '<', $end)
             ->where('ends_at', '>', $start)
             ->exists();
@@ -49,7 +54,15 @@ class ReservationController
             ], 422);
         }
 
-        return response()->json(new ReservationResource(Reservations::create($validated)));
+
+        $reservation = Reservation::create([
+            'aircraft_id' => $aircraft->id,
+            'user_id'     => $validated['user_id'],
+            'starts_at'   => $validated['starts_at'],
+            'ends_at'     => $validated['ends_at'],
+        ]);
+
+        return response()->json(new ReservationResource($reservation));
     }
 
     /**
@@ -73,14 +86,14 @@ class ReservationController
      */
     public function update(UpdateReservationRequest $request, string $id)
     {
-        $res = Reservations::findOrFail($id);
+        $res = Reservation::findOrFail($id);
 
         $validated = $request->validated();
 
         $start = Carbon::parse(!array_key_exists('starts_at', $validated) ? $res['starts_at'] : $validated['starts_at']);
         $end = Carbon::parse(!array_key_exists('ends_at', $validated) ? $res['ends_at'] : $validated['ends_at']);
 
-        $isOverlapping = Reservations::query()
+        $isOverlapping = Reservation::query()
             ->where('aircraft_id', !array_key_exists('aircraft_id', $validated) ? $res['aircraft_id'] : $validated['aircraft_id'])
             ->where('starts_at', '<', $end)
             ->where('ends_at', '>', $start)
@@ -94,6 +107,7 @@ class ReservationController
         }
 
         $res->update($validated);
+        return response()->json(new ReservationResource($res));
     }
 
     /**

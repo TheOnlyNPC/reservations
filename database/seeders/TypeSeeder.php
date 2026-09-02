@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Types;
+use App\Models\Type;
 use Illuminate\Database\Seeder;
 
 class TypeSeeder extends Seeder
@@ -12,14 +12,14 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        Types::updateOrCreate(
+        Type::updateOrCreate(
         ['name' => 'DR400',]
         ,[
             'seats' => 4,
             'fuel_capacity' => 240
         ]);
 
-        Types::updateOrCreate(        
+        Type::updateOrCreate(        
         ['name' => 'FK9'],
         [
             'seats' => 2,

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreTypeRequest;
 use App\Http\Requests\UpdateTypeRequest;
 use App\Http\Resources\TypeResource;
-use App\Models\Types;
+use App\Models\Type;
 
 class TypeController
 {
@@ -15,7 +15,7 @@ class TypeController
     public function index()
     {
         //
-        $types = Types::all();
+        $types = Type::all();
         return TypeResource::collection($types);
     }
 
@@ -34,7 +34,7 @@ class TypeController
     {
         $validated = $request->validated();
 
-        Types::create($validated);
+        Type::create($validated);
     }
 
     /**
@@ -58,7 +58,7 @@ class TypeController
      */
     public function update(UpdateTypeRequest $request, string $id)
     {
-        $type = Types::findOrFail($id);
+        $type = Type::findOrFail($id);
 
         $validated = $request->validated();
         

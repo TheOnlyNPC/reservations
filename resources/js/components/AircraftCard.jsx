@@ -16,24 +16,26 @@ export default function AircraftCard(props) {
             <h2 className="text-zinc-50 font-medium w-fit">
                 {props.aircraft.registration}
             </h2>
-            <hr className="border-t border-zinc-800 mt-2 mb-2" />
-            <div className="text-sm">
-                <p className="float-right text-zinc-50">
-                    {props.aircraft.type.name}
-                </p>
-                <p className="text-zinc-400">Type:</p>
-            </div>
-            <div className="text-sm">
-                <p className="float-right text-zinc-50">
-                    {props.aircraft.type.fuelCapacity}l
-                </p>
-                <p className="text-zinc-400">Max. Fuel:</p>
-            </div>
-            <div className="text-sm">
-                <p className="float-right text-zinc-50">
-                    {props.aircraft.type.seats - 1} + 👨‍✈️
-                </p>
-                <p className="text-zinc-400">Seats:</p>
+            <div className="pr-2">
+                <hr className="border-t border-zinc-800 mt-2 mb-2" />
+                <div className="text-sm">
+                    <p className="float-right text-zinc-50">
+                        {props.aircraft.type.name}
+                    </p>
+                    <p className="text-zinc-400">Type:</p>
+                </div>
+                <div className="text-sm">
+                    <p className="float-right text-zinc-50">
+                        {props.aircraft.type.fuelCapacity}l
+                    </p>
+                    <p className="text-zinc-400">Max. Fuel:</p>
+                </div>
+                <div className="text-sm">
+                    <p className="float-right text-zinc-50">
+                        {props.aircraft.type.seats - 1} + 👨‍✈️
+                    </p>
+                    <p className="text-zinc-400">Seats:</p>
+                </div>
             </div>
         </div>
     );

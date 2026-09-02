@@ -129,9 +129,6 @@ export default function AddAircraftForm({
                                                     {type.name}
                                                 </option>
                                             ))}
-                                            <option value="new">
-                                                Create New Type
-                                            </option>
                                         </Select>
                                         <ChevronDownIcon
                                             className="group pointer-events-none absolute top-2.5 right-2.5 size-4 fill-white/60"

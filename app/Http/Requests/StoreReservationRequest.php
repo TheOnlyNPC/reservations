@@ -23,10 +23,11 @@ class StoreReservationRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'user_id' => ['required', 'exists:users,id'],
-            'aircraft_id' => ['required', 'exists:aircrafts,id'],
+            'user_id' => ['required', 'integer', 'exists:users,id'],
+            'aircraft_id' => ['required_without:registration', 'integer', 'exists:aircrafts,id'],
+            'registration' => ['required_without:aircraft_id', 'string','exists:aircrafts,registration'],
             'starts_at' => ['required', 'date'],
-            'ends_at' => ['required', 'date'],
+            'ends_at' => ['required', 'date', 'after:starts_at'],
         ];
     }
 }

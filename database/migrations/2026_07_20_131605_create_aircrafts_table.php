@@ -20,8 +20,8 @@ return new class extends Migration
                 ->constrained('types')
                 ->cascadeOnDelete(); 
             
-            $table->enum('status', AircraftStatus::cases()); 
-            $table->string('registration');
+            $table->enum('status', AircraftStatus::cases())->default(AircraftStatus::AVAILABLE); 
+            $table->string('registration')->unique();
         });
     }
 

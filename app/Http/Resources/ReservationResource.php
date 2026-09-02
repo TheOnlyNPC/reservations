@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -14,10 +15,22 @@ class ReservationResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $start = Carbon::parse($this->starts_at);
+        $end = Carbon::parse($this->ends_at);
+
         return [
             'id' => $this->id,
-            'startsAt' => $this->starts_at, 
-            'endsAt' => $this->ends_at, 
+            'startsAt' => [
+                'date' => $start->format('d.m.Y'), 
+                'time' => $start->format('H:i'), 
+                'dateTimeLocal' => $start->format('Y-m-d\TH:i:s'),
+            ],
+            'endsAt' => [
+                'date' => $end->format('d.m.Y'), 
+                'time' => $end->format('H:i'), 
+                'dateTimeLocal' => $end->format('Y-m-d\TH:i:s'),
+            ],
+            'duration' => $start->diffForHumans($end, true),
             'aircraft' => [
                 'id' => $this->aircraft_id,
                 'registration' => $this->aircraft?->registration,

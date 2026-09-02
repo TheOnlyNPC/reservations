@@ -11,17 +11,12 @@ export default function useAircrafts() {
             })
             .then((response) => {
                 const data = response.data;
+                console.log(response.data);
+
                 setAircrafts(data);
             })
             .catch((err) => console.error("GET error:", err));
     }, []);
-
-    useEffect(() => {
-        console.log("Aircrafts: ");
-        aircrafts.forEach((aircraft) => {
-            console.log(aircraft);
-        });
-    }, [aircrafts]);
 
     const addAircraft = (newAircraft) => {
         axios
@@ -34,5 +29,16 @@ export default function useAircrafts() {
             .catch((err) => console.error("POST error:", err));
     };
 
-    return [aircrafts, addAircraft];
+    const updateAircraft = (id, changes) => {
+        axios
+            .patch(`http://reservations.test/api/aircraft/${id}`, changes, {
+                headers: { "Content-Type": "application/json" },
+            })
+            .then((response) => {
+                setAircrafts((prev) => [...prev, response.data]);
+            })
+            .catch((err) => console.error("PATCH error:", err));
+    };
+
+    return [aircrafts, addAircraft, updateAircraft];
 }
