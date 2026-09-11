@@ -7,6 +7,7 @@ use App\Nova\Actions\DelAircraftRegistrations;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\BelongsTo;
+use Laravel\Nova\Fields\HasMany;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
@@ -37,6 +38,8 @@ class Aircraft extends Resource
         'id', 'registration'
     ];
 
+    public static $withCount = ['reservations'];
+
     /**
      * Get the fields displayed by the resource.
      *
@@ -57,6 +60,10 @@ class Aircraft extends Resource
                 ->filterable(),
             BelongsTo::make('Type')
                 ->filterable(),
+            HasMany::make('Reservations'),
+            Number::make('Total Reservations', function () {
+                return $this->reservations()->count();
+            })->exceptOnForms(),    
         ];
     }
 

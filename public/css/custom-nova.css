@@ -1,0 +1,10 @@
+.sidebar-header .nova-brand svg,
+a[aria-label="Laravel Nova"] svg {
+    height: 4rem !important;
+    width: 10rem !important;
+}
+
+.mx-auto.max-w-md svg {
+    height: 4rem !important;
+    width: auto !important;
+}
