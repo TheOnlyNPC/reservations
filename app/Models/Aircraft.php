@@ -3,12 +3,15 @@
 namespace App\Models;
 
 use App\AircraftStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Aircraft extends Model
 {
+    use HasFactory;
+
     protected $fillable = ['type_id', 'status', 'registration'];
     protected $table = 'aircrafts';
 

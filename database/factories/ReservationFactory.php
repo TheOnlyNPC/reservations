@@ -23,7 +23,8 @@ class ReservationFactory extends Factory
 
     public function definition(): array
     {
-        $start = Carbon::parse(Reservation::latest('ends_at')->value('ends_at'))->addMinutes(rand(1, 1440));
+        $first = Reservation::latest('ends_at')->first() == null ? Carbon::now() : Reservation::latest('ends_at')->value('ends_at');
+        $start = Carbon::parse($first->addMinutes(rand(1, 1440)))->addDays(rand(0, 4));
         $end = $start->addMinutes(rand(1, 1440));
 
         return [

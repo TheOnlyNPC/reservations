@@ -4,6 +4,8 @@ namespace App\Nova;
 
 use App\AircraftStatus;
 use App\Nova\Actions\DelAircraftRegistrations;
+use App\Nova\Actions\SeedAircraft;
+use App\Nova\Metrics\AircraftUsage;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Badge;
 use Laravel\Nova\Fields\BelongsTo;
@@ -74,7 +76,9 @@ class Aircraft extends Resource
      */
     public function cards(NovaRequest $request): array
     {
-        return [];
+        return [
+            new AircraftUsage()->onlyOnDetail()->defaultRange(-7),
+        ];
     }
 
     /**
@@ -105,7 +109,8 @@ class Aircraft extends Resource
     public function actions(NovaRequest $request): array
     {
         return [
-            new DelAircraftRegistrations
+            new DelAircraftRegistrations,
+            new SeedAircraft
         ];
     }
 }

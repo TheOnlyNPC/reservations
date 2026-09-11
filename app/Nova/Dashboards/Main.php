@@ -2,8 +2,13 @@
 
 namespace App\Nova\Dashboards;
 
-use Laravel\Nova\Cards\Help;
+use App\Models\Aircraft;
+use App\Nova\Metrics\AircraftReservations;
+use App\Nova\Metrics\AircraftTotal;
+use App\Nova\Metrics\AircraftUsage;
+use App\Nova\Metrics\AircraftUsageDistribution;
 use Laravel\Nova\Dashboards\Main as Dashboard;
+use Laravel\Nova\Cards\Help;
 
 class Main extends Dashboard
 {
@@ -15,7 +20,9 @@ class Main extends Dashboard
     public function cards(): array
     {
         return [
-            new Help,
+            new AircraftTotal(),
+            new AircraftUsageDistribution(),
+            new AircraftReservations()->defaultRange(-7),
         ];
     }
 }

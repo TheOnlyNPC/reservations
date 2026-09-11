@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Nova\Actions\DelAircraftRegistrations;
+use App\Nova\Actions\SeedReservation;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\Date;
@@ -90,7 +91,7 @@ class Reservation extends Resource
     public function actions(NovaRequest $request): array
     {
         return [
-            new DelAircraftRegistrations,
+            new SeedReservation,
         ];
     }
 }
