@@ -15,5 +15,3 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('type', TypeController::class)->middleware(ConvertCamelToSnake::class);
 Route::apiResource('aircraft', AircraftController::class)->middleware(ConvertCamelToSnake::class);
 Route::apiResource('reservation', ReservationController::class)->middleware(ConvertCamelToSnake::class);
-
-Route::post('authenticate', [LoginController::class, 'authenticate']);

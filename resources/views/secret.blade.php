@@ -6,6 +6,9 @@
         <title>Laravel React App</title>
     </head>
     <body class="bg-zinc-950 dark">
-        Hello User
+        Hi, {{ Auth::user()->name }}
+        <a href="{{ route('logout') }}">
+            <button>Logout</button>
+        </a>
     </body>
 </html>
