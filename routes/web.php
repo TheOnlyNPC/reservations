@@ -19,8 +19,4 @@ Route::get('/secret', function () {
 Route::get('/login', function () {
     return view('login');
 })
-->name('login');
-
-//Handle Auth
-Route::post('/login', [LoginController::class, 'authenticate']);
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+->name('web.login');

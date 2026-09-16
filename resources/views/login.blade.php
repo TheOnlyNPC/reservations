@@ -6,7 +6,7 @@
         <title>Laravel React App</title>
     </head>
     <body class="bg-zinc-950 dark">
-        <form action="{{ route('login') }}" method="POST">
+        <form action="{{ route('web.login') }}" method="POST">
             @csrf
             <input type="email" name="email" placeholder="Email" />
             <input type="password" name="password" placeholder="Passwort" />

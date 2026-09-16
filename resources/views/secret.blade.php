@@ -7,7 +7,7 @@
     </head>
     <body class="bg-zinc-950 dark">
         Hi, {{ Auth::user()->name }}
-        <a href="{{ route('logout') }}">
+        <a href="{{ route('web.logout') }}">
             <button>Logout</button>
         </a>
     </body>
