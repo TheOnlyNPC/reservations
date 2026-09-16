@@ -16,4 +16,6 @@ Route::apiResource('type', TypeController::class)->middleware(ConvertCamelToSnak
 Route::apiResource('aircraft', AircraftController::class)->middleware(ConvertCamelToSnake::class);
 Route::apiResource('reservation', ReservationController::class)->middleware(ConvertCamelToSnake::class);
 
-Route::post('authenticate', [LoginController::class, 'authenticate']);
+//Handle Auth
+Route::post('/login', [LoginController::class, 'authenticate'])->name('web.login')->middleware('web');
+Route::get('/logout', [LoginController::class, 'logout'])->name('web.logout')->middleware('web');
