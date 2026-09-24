@@ -1,0 +1,23 @@
+$kind: http-request
+name: Login
+description: ""
+url: http://reservations.test/api/login?email=&password=
+method: POST
+queryParams:
+  - key: email
+    value: ""
+    disabled: false
+    description: ""
+  - key: password
+    value: ""
+    disabled: false
+    description: ""
+body:
+  type: json
+  content: ""
+auth:
+  type: basic
+  credentials:
+    username: admin
+    password: admin
+order: 1789653071228

@@ -17,10 +17,6 @@ function App() {
     const [updateResVis, setUpdateResVis] = useState(false);
     const [addResVis, setAddResVis] = useState(false);
 
-    useEffect(() => {
-        console.log(updateResVis);
-    }, [updateResVis]);
-
     return (
         <>
             <Header />

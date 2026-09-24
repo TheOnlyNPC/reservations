@@ -15,6 +15,11 @@ class UpdateAircraftRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->merge(['registration' => strtoupper($this->registration)]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -24,6 +29,7 @@ class UpdateAircraftRequest extends FormRequest
     {
         return [
             'type_id' => ['integer'],
+            'registration' => ['string'],
         ];
     }
 }

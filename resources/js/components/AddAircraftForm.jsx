@@ -102,14 +102,14 @@ export default function AddAircraftForm({
                                     </Label>
                                     <div className="relative">
                                         <Select
-                                            {...register("type_id", {
+                                            {...register("typeId", {
                                                 required: true,
                                             })}
                                             className={clsx(
                                                 "mt-3 block w-full appearance-none rounded-lg border-none bg-white/5 px-3 py-1.5 text-sm/6 text-white",
                                                 "focus:not-data-focus:outline-none data-focus:outline-2 data-focus:-outline-offset-2 data-focus:outline-white/25",
                                                 "*:text-black",
-                                                errors.type_id &&
+                                                errors.typeId &&
                                                     "outline-2 outline-red-500",
                                             )}
                                         >
@@ -135,7 +135,7 @@ export default function AddAircraftForm({
                                             aria-hidden="true"
                                         />
                                     </div>
-                                    {errors.type_id && (
+                                    {errors.typeId && (
                                         <p className="mt-1 text-xs text-red-400">
                                             Model selection is required.
                                         </p>

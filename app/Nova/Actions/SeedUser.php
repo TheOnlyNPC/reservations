@@ -12,7 +12,7 @@ use Laravel\Nova\Actions\ActionResponse;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SeedUser extends Action
+class SeedUser extends Action implements ShouldQueue
 {
     use InteractsWithQueue;
     use Queueable;

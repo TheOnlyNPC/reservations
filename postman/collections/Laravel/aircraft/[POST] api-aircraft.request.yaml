@@ -1,8 +1,17 @@
 $kind: http-request
 name: "[POST] api/aircraft"
-url: "{{base_url}}/api/aircraft"
+url: "{{base_url}}/api/aircraft?registration=&typeId="
 method: POST
 headers:
   Accept: application/json
   Content-Type: application/json
+queryParams:
+  - key: registration
+    value: ""
+    disabled: false
+    description: ""
+  - key: typeId
+    value: ""
+    disabled: false
+    description: ""
 order: 2000

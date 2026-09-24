@@ -1,0 +1,9 @@
+$kind: http-request
+name: Logout
+url: http://reservations.test/api/logout
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: ""
+order: 1503499251995348

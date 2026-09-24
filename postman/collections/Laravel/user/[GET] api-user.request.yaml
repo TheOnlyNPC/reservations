@@ -4,5 +4,6 @@ url: "{{base_url}}/api/user"
 method: GET
 headers:
   Accept: application/json
-  Content-Type: application/json
+  Referer: http://reservations.test
+  Cookie: laravel_session=eyJpdiI6ImlTenl1SFpPRE9XREhGbnlDTU1YUWc9PSIsInZhbHVlIjoibmZvUVg0YjRRWFRtSjlESkRFTjZkbHdIUllmUlNyNGQzUGgybVBmbmU0RmJrd2dpR2R5SE1RRjIvc0Z2STFlYkJGZ3FkcWdZektpOFVvN0o1Q0dLMzZjbGcvSWR3RjBzTnlaRjlHTlEvVzhiZ3BEMTNyS3FnYWlhZDJrWkRJVTIiLCJtYWMiOiIyMmE0OGE0MjAwYmQ1MWI2Y2YxNzVlMjM0NmMwOTc4ZjRmZjkyOTNhYmU4ODkyZDc2ZjQ4Y2ZiOTA0MTFlNjRiIiwidGFnIjoiIn0%3D
 order: 1000

@@ -46,8 +46,8 @@ class Reservation extends Resource
     {
         return [
             ID::make()->sortable(),
-            BelongsTo::make('User')->filterable(),
-            BelongsTo::make('Aircraft')->filterable(),
+            BelongsTo::make('User')->filterable()->sortable(),
+            BelongsTo::make('Aircraft')->filterable()->sortable(),
             DateTime::make('Start', 'starts_at'),
             DateTime::make('End', 'ends_at'),
         ];

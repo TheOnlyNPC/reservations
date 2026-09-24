@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
 
 class StoreReservationRequest extends FormRequest
 {
@@ -13,6 +14,20 @@ class StoreReservationRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    /**
+     * Prepare the data for validation.
+     */
+    protected function prepareForValidation(): void
+    {   
+        $this->merge((function(){
+            $converted = [];
+            foreach ($this->all() as $key => $value) {
+                $converted[Str::snake($key)] = $value;
+            }
+            return $converted;
+        })());
     }
 
     /**

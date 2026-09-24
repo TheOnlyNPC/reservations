@@ -1,0 +1,9 @@
+$kind: http-request
+name: User
+url: reservations.test/api/user
+method: GET
+auth:
+  type: bearer
+  credentials:
+    token: 4|hCvLwqmTxKIed6Y0YI5ab4PkkWwEsXoArAjNrMkx3816ca05
+order: 2119027103555948

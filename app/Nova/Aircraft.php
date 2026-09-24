@@ -31,6 +31,8 @@ class Aircraft extends Resource
      */
     public static $title = 'registration';
 
+    public static $showActionsOnIndex = true; 
+
     /**
      * The columns that should be searched.
      *
@@ -51,7 +53,10 @@ class Aircraft extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Registration', 'registration')->sortable(),
+            Text::make('Registration', 'registration')
+                ->sortable()
+                ->creationRules('unique:aircrafts,registration')
+                ->updateRules('unique:aircrafts,registration'),
             Badge::make('Status')
                 ->withIcons()
                 ->map([

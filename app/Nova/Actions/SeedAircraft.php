@@ -13,7 +13,7 @@ use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SeedAircraft extends Action
+class SeedAircraft extends Action implements ShouldQueue
 {
     use InteractsWithQueue;
     use Queueable;

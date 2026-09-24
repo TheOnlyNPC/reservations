@@ -25,7 +25,7 @@ class StoreTypeRequest extends FormRequest
         return [
             'name' => ['required', 'max:255'],
             'seats' => ['required', 'integer'],
-            'fuel_capacity' => ['integer'],
+            'fuelCapacity' => ['integer'],
         ];
     }
 }

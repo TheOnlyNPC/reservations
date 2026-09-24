@@ -18,12 +18,23 @@ class AircraftFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+    function generateRegistration(): string {
+        $registration = 'D-' . fake()->unique()->regexify('[A-Z]{4}');
+        
+        while (!Aircraft::where('registration', '=', $registration)){
+            $registration = 'D-' . fake()->unique()->regexify('[A-Z]{4}');
+        }
+
+        return $registration;
+    }
+
     public function definition(): array
     {
         return [
             'status' => AircraftStatus::AVAILABLE,
             'type_id' => Type::inRandomOrder()->value('id'),
-            'registration' => 'D-' . fake()->regexify('[A-Z]{4}'),
+            'registration' => $this->generateRegistration(),
         ];
     }
 }

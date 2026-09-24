@@ -2,8 +2,13 @@
 
 namespace App\Http\Requests;
 
+use App\AircraftStatus;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Str;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\Rules\Enum;
+use Override;
 
 class StoreAircraftRequest extends FormRequest
 {
@@ -15,6 +20,11 @@ class StoreAircraftRequest extends FormRequest
         return true;
     }
 
+    public function prepareForValidation()
+    {
+        $this->merge(['registration' => strtoupper($this->registration)]);
+    }
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -23,8 +33,9 @@ class StoreAircraftRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type_id' => ['required', 'exists:types,id'],
-            'registration' => ['required'],
+            'typeId' => ['required', 'exists:types,id'],
+            'registration' => ['required', Rule::unique('aircrafts')],
+            'status' => [new Enum(AircraftStatus::class)]
         ];
     }
 }

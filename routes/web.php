@@ -6,14 +6,9 @@ use Illuminate\Support\Facades\Route;
 //Dashboard
 Route::get('/', function () {
     return view('welcome');
-});
-
-//Secret page to test auth
-Route::get('/secret', function () {
-    return view('secret');
 })
-->name('secret')
-->middleware(['auth']);
+->middleware(['auth'])
+->name('web.dashboard');
 
 //Login page
 Route::get('/login', function () {

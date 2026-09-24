@@ -15,7 +15,9 @@ export default function useAircrafts() {
 
                 setAircrafts(data);
             })
-            .catch((err) => console.error("GET error:", err));
+            .catch((err) => {
+                console.error("GET error:", err);
+            });
     }, []);
 
     const addAircraft = (newAircraft) => {
@@ -26,7 +28,9 @@ export default function useAircrafts() {
             .then((response) => {
                 setAircrafts((prev) => [...prev, response.data]);
             })
-            .catch((err) => console.error("POST error:", err));
+            .catch((err) => {
+                console.error("POST error:", err);
+            });
     };
 
     const updateAircraft = (id, changes) => {
@@ -37,7 +41,9 @@ export default function useAircrafts() {
             .then((response) => {
                 setAircrafts((prev) => [...prev, response.data]);
             })
-            .catch((err) => console.error("PATCH error:", err));
+            .catch((err) => {
+                console.error("PATCH error:", err);
+            });
     };
 
     return [aircrafts, addAircraft, updateAircraft];

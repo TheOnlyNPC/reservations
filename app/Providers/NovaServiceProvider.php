@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\User;
+use Blade;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Fortify\Features;
 use Laravel\Nova\Nova;
@@ -17,7 +19,11 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         parent::boot();
 
-        Nova::style('custom-nova', public_path('css/custom-nova.css'));
+        Nova::footer(function (Request $request) {
+            return '
+                <p class="text-center w-full">Aircraft Reservations by @ Jonas! <br>2026</p>
+            ';
+        });
     }
 
     /**

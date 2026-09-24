@@ -14,7 +14,6 @@ class TypeController
      */
     public function index()
     {
-        //
         $types = Type::all();
         return TypeResource::collection($types);
     }
@@ -61,7 +60,7 @@ class TypeController
         $type = Type::findOrFail($id);
 
         $validated = $request->validated();
-        
+
         $type->update($validated);
     }
 

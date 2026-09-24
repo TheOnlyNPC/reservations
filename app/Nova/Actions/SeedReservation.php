@@ -3,18 +3,21 @@
 namespace App\Nova\Actions;
 
 use App\Models\Reservation;
+use Illuminate\Bus\Batchable;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Collection;
 use Laravel\Nova\Actions\Action;
 use Laravel\Nova\Actions\ActionResponse;
+use Laravel\Nova\Contracts\BatchableAction;
 use Laravel\Nova\Fields\ActionFields;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
-class SeedReservation extends Action
+class SeedReservation extends Action implements ShouldQueue, BatchableAction
 {
+    use Batchable;
     use InteractsWithQueue;
     use Queueable;
 

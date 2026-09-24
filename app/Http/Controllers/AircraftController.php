@@ -33,6 +33,9 @@ class AircraftController
     {
         $validated = $request->validated();
 
+        $validated['type_id'] = $validated['typeId'];
+        unset($validated['typeId']);
+
         $aircraft = Aircraft::create($validated);
 
         return response()->json(new AircraftResource($aircraft));
@@ -66,6 +69,8 @@ class AircraftController
         $validated = $request->validated();
         
         $aircraft->update($validated);
+        
+        return new AircraftResource($aircraft);
     }
 
     /**

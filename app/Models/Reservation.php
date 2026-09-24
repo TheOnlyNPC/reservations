@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Nova\Actions\Actionable;
+use Laravel\Sanctum\HasApiTokens;
 
 class Reservation extends Model
 {
     use HasFactory;
+    use Actionable;
+    use HasApiTokens;
 
     protected $fillable = [
         'user_id',
